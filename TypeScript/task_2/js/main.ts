@@ -67,3 +67,15 @@ console.log(createEmployee('$500').constructor.name);
 console.log(executeWork(createEmployee(200)));
 // eslint-disable-next-line no-console
 console.log(executeWork(createEmployee(1000)));
+
+// String literal types and function
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass: Subjects): string {
+  return todayClass === 'Math' ? 'Teaching Math' : 'Teaching History';
+}
+
+// eslint-disable-next-line no-console
+console.log(teachClass('Math'));
+// eslint-disable-next-line no-console
+console.log(teachClass('History'));
