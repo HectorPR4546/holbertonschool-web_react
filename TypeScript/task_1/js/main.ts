@@ -42,3 +42,32 @@ console.log(director1);
 
 // eslint-disable-next-line no-console
 console.log(printTeacher('John', 'Doe'));
+
+// Interfaces describing the class and its constructor
+interface StudentClassInterface {
+  firstName: string;
+  lastName: string;
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
+
+class StudentClass implements StudentClassInterface {
+  constructor(public firstName: string, public lastName: string) {}
+
+  workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+// Example usage
+const studentExample: StudentClassInterface = new (StudentClass as StudentConstructor)('Alice', 'Johnson');
+// eslint-disable-next-line no-console
+console.log(studentExample.displayName());
