@@ -41,6 +41,19 @@ function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
+// Type predicate to narrow an employee to Director
+function isDirector(employee: Director | Teacher): employee is Director {
+  return employee instanceof Director;
+}
+
+// Execute appropriate work based on employee type
+function executeWork(employee: Director | Teacher): string {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  }
+  return (employee as Teacher).workTeacherTasks();
+}
+
 // Demo
 // eslint-disable-next-line no-console
 console.log(createEmployee(200).constructor.name);
@@ -49,3 +62,8 @@ console.log(createEmployee(1000).constructor.name);
 // eslint-disable-next-line no-console
 console.log(createEmployee('$500').constructor.name);
 
+// Expected results for executeWork
+// eslint-disable-next-line no-console
+console.log(executeWork(createEmployee(200)));
+// eslint-disable-next-line no-console
+console.log(executeWork(createEmployee(1000)));
